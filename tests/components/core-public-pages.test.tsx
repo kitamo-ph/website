@@ -9,9 +9,12 @@ import HowItWorksPage, {
   metadata as howItWorksMetadata,
 } from "@/app/how-it-works/page";
 import HomePage, { metadata as homeMetadata } from "@/app/page";
+import { aboutCopy } from "@/lib/content/about-copy";
 import { forSellersCopy } from "@/lib/content/for-sellers-copy";
 import { howItWorksCopy } from "@/lib/content/how-it-works-copy";
+import { productStatuses } from "@/lib/content/product-status";
 import {
+  associationRequestLinks,
   createAccountLink,
   webAppSignInLink,
 } from "@/lib/content/site-navigation";
@@ -135,6 +138,105 @@ describe("MR-1 About", () => {
     expect(markup).toContain('data-product-status="testing"');
     expect(markup).toContain("Currently Testing");
     expect(markup).toContain("Any future charge is announced first");
+  });
+});
+
+describe("CLM-027 About: the barangay, LGU or HOA request (Planned)", () => {
+  const { associations } = aboutCopy;
+  const section = () => {
+    const markup = renderPage(AboutPage);
+    const start = markup.indexOf(
+      '<section aria-labelledby="associations-heading"',
+    );
+
+    expect(start).toBeGreaterThan(-1);
+    return markup.slice(start, markup.indexOf("</section>", start));
+  };
+  const visibleText = (markup: string) => markup.replace(/<[^>]*>/g, " ");
+  // The arrow is aria-hidden, so it is not part of the accessible name.
+  const accessibleName = (label: string) => label.replace("→", "").trim();
+
+  it("shows Planned as visible text with a screen-reader prefix", () => {
+    const markup = section();
+
+    expect(markup).toContain('data-product-status="planned"');
+    expect(markup).toContain("Product status: ");
+    expect(markup).toContain(productStatuses.planned.label);
+    expect(markup).not.toContain(productStatuses.available.label);
+    expect(markup).not.toContain(productStatuses.testing.label);
+  });
+
+  it("carries the English copy and the Filipino copy marked lang=fil", () => {
+    const markup = section();
+    const [english, filipino] = associations.blocks;
+    const filipinoStart = markup.lastIndexOf('lang="fil"');
+
+    expect(markup).toContain(associations.heading);
+    expect(markup).toContain(`lang="fil">${associations.headingFil}</span>`);
+    expect(markup.slice(0, filipinoStart)).toContain(english.body);
+    expect(markup.slice(filipinoStart)).toContain(filipino.body);
+    expect(markup.slice(filipinoStart)).not.toContain(english.body);
+    // The honest lines: the seller chooses, and no sales amount is shown.
+    expect(english.body).toContain("They choose what to share");
+    expect(english.body).toContain("no sales amounts are shown");
+    expect(filipino.body).toContain("walang ipinapakitang halaga ng benta");
+  });
+
+  it("offers Request it and Humiling as plain emails with a subject", () => {
+    const markup = section();
+    const cases = [
+      [
+        associationRequestLinks.en,
+        "Request it by email",
+        "KitaMo for our barangay, LGU or HOA",
+      ],
+      [
+        associationRequestLinks.fil,
+        "Humiling sa pamamagitan ng email",
+        "KitaMo para sa aming barangay, LGU o HOA",
+      ],
+    ] as const;
+
+    for (const [link, name, subject] of cases) {
+      const links = linksTo(markup, link.href);
+      const url = new URL(link.href);
+
+      expect(links).toHaveLength(1);
+      expect(accessibleName(links[0].label)).toBe(name);
+      expect(links[0].attributes).not.toContain("target=");
+      expect(url.protocol).toBe("mailto:");
+      expect(url.pathname).toBe("kitamo.online@gmail.com");
+      // Only the subject is prefilled: no body, copy or tracking parameter.
+      expect([...url.searchParams.keys()]).toEqual(["subject"]);
+      expect(url.searchParams.get("subject")).toBe(subject);
+    }
+  });
+
+  it("collects nothing and promises no date, price or availability", () => {
+    const markup = section();
+    const text = visibleText(markup).toLowerCase();
+
+    for (const tag of ["<form", "<input", "<button", "<script", "<iframe"]) {
+      expect(markup).not.toContain(tag);
+    }
+    expect(text).not.toMatch(/\d|₱/);
+    for (const phrase of ["join", "available", "soon", "sign up"]) {
+      expect(text).not.toContain(phrase);
+    }
+  });
+
+  it("is the only place the site links to an email", () => {
+    for (const [, Page] of pages) {
+      const mailtos = hrefsIn(renderPage(Page)).filter((href) =>
+        href.startsWith("mailto:"),
+      );
+
+      expect(mailtos).toEqual(
+        Page === AboutPage
+          ? [associationRequestLinks.en.href, associationRequestLinks.fil.href]
+          : [],
+      );
+    }
   });
 });
 

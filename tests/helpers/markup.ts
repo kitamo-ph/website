@@ -1,4 +1,5 @@
 import {
+  associationRequestLinks,
   createAccountLink,
   helpLinks,
   webAppSignInLink,
@@ -13,7 +14,8 @@ export const publicRoutes = [
 
 /**
  * Every destination the public site may link to: its own routes, the skip
- * link, and the web-app pages approved in CLM-010, CLM-013 and CLM-025.
+ * link, the web-app pages approved in CLM-010, CLM-013 and CLM-025, and the
+ * two request emails of CLM-027 (pending owner approval).
  */
 export const allowedHrefs = new Set<string>([
   ...publicRoutes,
@@ -21,6 +23,7 @@ export const allowedHrefs = new Set<string>([
   webAppSignInLink.href,
   createAccountLink.href,
   ...helpLinks.map((link) => link.href),
+  ...Object.values(associationRequestLinks).map((link) => link.href),
 ]);
 
 export function hrefsIn(markup: string) {

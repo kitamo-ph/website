@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/metadata/site";
 
 export const metadata = pageMetadata({ path: "/about", ...aboutCopy.metadata });
 
-const { hero, why, standing, help, closing } = aboutCopy;
+const { hero, why, standing, associations, help, closing } = aboutCopy;
 
 export default function AboutPage() {
   return (
@@ -70,6 +70,51 @@ export default function AboutPage() {
             </div>
           ))}
         </dl>
+      </section>
+
+      {/* CLM-027: a Planned level for a secondary audience, kept to a small
+          block on About (the IA routes community and LGU visitors here). */}
+      <section
+        aria-labelledby="associations-heading"
+        className="px-gutter py-section border-border wide:grid-cols-2 grid gap-x-[clamp(2.5rem,6.6vw,6rem)] gap-y-7 border-t"
+      >
+        <div className="flex flex-col items-start gap-4">
+          <h2 className="text-h3 text-balance" id="associations-heading">
+            {associations.heading}{" "}
+            <span
+              className="text-secondary mt-2 block text-[clamp(1.25rem,1.8vw,1.625rem)] leading-[1.25] font-semibold tracking-[-0.01em]"
+              lang="fil"
+            >
+              {associations.headingFil}
+            </span>
+          </h2>
+          <p className="m-0 text-[clamp(1.125rem,1.4vw,1.25rem)]">
+            <ProductStatus status={associations.status} />
+          </p>
+        </div>
+        <div className="flex flex-col gap-8">
+          {associations.blocks.map((block) => (
+            <div
+              className="flex flex-col gap-3.5"
+              key={block.lang}
+              lang={block.lang}
+            >
+              <p className="text-body max-w-[35rem] font-medium text-pretty">
+                {block.body}
+              </p>
+              <a
+                className="border-text text-row text-action hover:bg-pressed hover:text-action-press flex min-h-16 items-center justify-between gap-4 border-y font-bold no-underline"
+                href={block.action.href}
+              >
+                <span>
+                  {block.action.label}
+                  <span className="sr-only">{block.action.hint}</span>
+                </span>
+                <Arrow />
+              </a>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section

@@ -1,4 +1,5 @@
 import { sharedCopy } from "@/lib/content/shared-copy";
+import { associationRequestLinks } from "@/lib/content/site-navigation";
 
 /**
  * About copy, approved in docs/content/mr-1-marketing-content-contract.md.
@@ -37,6 +38,26 @@ export const aboutCopy = {
         name: "Android app, offline",
         status: "testing",
         body: "Not yet available.",
+      },
+    ],
+  },
+  // CLM-027 (Planned; pending owner approval). The barangay, LGU or HOA level
+  // is built with its switch off: not available, and no date is promised.
+  // English and Filipino; the owner approves the final wording before deploy.
+  associations: {
+    heading: "Are you a barangay, LGU or HOA?",
+    headingFil: "Barangay, LGU o HOA ba kayo?",
+    status: "planned",
+    blocks: [
+      {
+        lang: "en",
+        body: "Sellers who use your code can show when their stall is open and, if they choose, how busy it is. They choose what to share, and no sales amounts are shown.",
+        action: associationRequestLinks.en,
+      },
+      {
+        lang: "fil",
+        body: "Puwedeng ipakita ng mga nagtitindang gumagamit ng code ninyo kung bukas ang puwesto nila at, kung gusto nila, kung gaano ito kaabala. Sila ang pumipili kung ano ang ibabahagi, at walang ipinapakitang halaga ng benta.",
+        action: associationRequestLinks.fil,
       },
     ],
   },

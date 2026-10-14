@@ -28,7 +28,9 @@ contracts.
   - `docs/redesign/CLAUDE-DESIGN-BRIEF.md` and the round 2 and round 3
     prompts.
 - **Language.** English, with the web app's seller words (terminology register,
-  MR-1 section). No Filipino or Taglish page exists.
+  MR-1 section). No Filipino or Taglish page exists. The one exception is the
+  `/about` barangay, LGU or HOA block (CLM-027, pending owner approval), which
+  carries its own Filipino lines marked `lang="fil"`.
 
 ## Shared elements
 
@@ -96,6 +98,27 @@ This page must not mention:
     is announced first and needs your agreement" (CLM-011, CLM-012).
   - Android app, offline, **Currently Testing**: "Not yet available"
     (CLM-002, 003, 006).
+- **Are you a barangay, LGU or HOA?** CLM-027, **pending owner approval**.
+  One block after "Where it stands", with the visible **Planned** label
+  (`ProductStatus`, never colour alone). Exact wording is in
+  `lib/content/about-copy.ts` (`associations`) and the links in
+  `lib/content/site-navigation.ts` (`associationRequestLinks`):
+  - EN heading "Are you a barangay, LGU or HOA?"; FIL line "Barangay, LGU o
+    HOA ba kayo?" (`lang="fil"`).
+  - EN: "Sellers who use your code can show when their stall is open and, if
+    they choose, how busy it is. They choose what to share, and no sales
+    amounts are shown."
+  - FIL (`lang="fil"`): "Puwedeng ipakita ng mga nagtitindang gumagamit ng
+    code ninyo kung bukas ang puwesto nila at, kung gusto nila, kung gaano ito
+    kaabala. Sila ang pumipili kung ano ang ibabahagi, at walang ipinapakitang
+    halaga ng benta."
+  - Actions: "Request it" and "Humiling", each a `mailto:` to the web app's
+    support address with the subject "KitaMo for our barangay, LGU or HOA" /
+    "KitaMo para sa aming barangay, LGU o HOA". Screen readers also hear "by
+    email" / "sa pamamagitan ng email". No form, no tracking, no chat link.
+  - It must not state a date, price or availability, or imply that any
+    barangay, LGU or HOA uses or endorses KitaMo. "Join" is avoided (still
+    prohibited, terminology register).
 - **Need help?** Links to `app.kitamo.online/support` (CLM-025).
 - **Close.** "Try it at your counter." with the primary action.
 

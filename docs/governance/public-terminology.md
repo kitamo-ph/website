@@ -142,6 +142,27 @@ These stay prohibited in public copy:
 - "official receipt", except in the negative;
 - any statistic, rating or customer count.
 
+## Barangay, LGU or HOA block terminology (CLM-027; pending owner approval)
+
+Recorded 2026-10-14 for the one `/about` block only. Nothing here is approved
+until the owner approves the block's wording.
+
+- **barangay**, **LGU** and **HOA** name the audience, from the owner's D18
+  answers (an association's kind is HOA or Barangay/LGU). They do not claim
+  any partnership, endorsement or current use.
+- **code** is the association's code a seller enters to share a stall's status.
+  It is not an account, password or sign-up.
+- **stall** / **puwesto** follow the web app's own words for a selling place
+  (CLM-024 and the built, switched-off Account › Association screens).
+- **how busy** / **kaabala** stand for the Quiet / Busy / Very busy level. It
+  is a word, never a number.
+- **Request it** / **Humiling** label a plain email link, not a form or a
+  sign-up action.
+- **join** is avoided because it is still prohibited in public copy (MR-1
+  section). The Filipino lines are a new language scope under the
+  Filipino-language clarity requirements below (item 7), and need the owner's
+  approval as such.
+
 ## Classification rules
 
 | Classification      | Meaning                                                                                                                    |

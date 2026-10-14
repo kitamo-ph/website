@@ -30,3 +30,25 @@ export const helpLinks = [
   { href: "https://app.kitamo.online/terms", label: "Terms" },
   { href: "https://app.kitamo.online/support", label: "Support" },
 ] as const;
+
+/**
+ * CLM-027 (Planned; pending owner approval): a barangay, LGU or HOA asks for
+ * KitaMo by email. A plain `mailto:` with a prefilled subject, to the web app's
+ * published support address. No form: the site collects nothing (ADR-0007).
+ * `hint` is read by screen readers only, after the visible label.
+ */
+const requestMailto = (subject: string) =>
+  `mailto:kitamo.online@gmail.com?subject=${encodeURIComponent(subject)}`;
+
+export const associationRequestLinks = {
+  en: {
+    href: requestMailto("KitaMo for our barangay, LGU or HOA"),
+    label: "Request it",
+    hint: " by email",
+  },
+  fil: {
+    href: requestMailto("KitaMo para sa aming barangay, LGU o HOA"),
+    label: "Humiling",
+    hint: " sa pamamagitan ng email",
+  },
+} as const;

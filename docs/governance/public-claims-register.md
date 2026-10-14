@@ -1,13 +1,15 @@
 # KitaMo Public Claims Register
 
 Status: **MR-1 web-first site approved 2026-09-26 (CLM-012 to CLM-026); WEB-3
-and WEB-4 Android claims re-scoped to the Android answers**
+and WEB-4 Android claims re-scoped to the Android answers; CLM-027 (Planned)
+recorded 2026-10-14, pending owner approval**
 
 Evidence reviewed: 2026-08-09 (CLM-001 to CLM-009); 2026-09-25 (CLM-010,
-CLM-011); 2026-09-26 (CLM-012 to CLM-026)
+CLM-011); 2026-09-26 (CLM-012 to CLM-026); 2026-10-14 (CLM-027)
 Primary source snapshot: `../owner-seller-mobile` at
 `0ce3efd8cb1c904fb362b27bc6cecd5dc937d925`; CLM-010: `../seller-web` at
-`9d30db6d21194870405f9e94ebd498107bbde8c0`
+`9d30db6d21194870405f9e94ebd498107bbde8c0`; CLM-027: `../seller-web` branch
+`extra/r16-sr-hoa` at `d1fe60b1a1dbc2d80995b3bbfb9f7e4a3037df47`
 
 This register governs factual public product statements. It is not a bank of
 final marketing copy. A traced fact is not approved for publication merely
@@ -78,11 +80,12 @@ only for the shared header and footer `Sign in` link recorded below.
 | CLM-024 | There are no staff logins or multiple stalls yet. | approved | Available Today | `seller-web` | `../seller-web/docs/ROADMAP-V2.md` (R2 stalls, R3 staff) | Approved: MR-1, all four routes; owner (Product Authority), 2026-09-26 | Negative clarification. "Yet" states no date and promises no delivery. |
 | CLM-025 | The web app's Privacy, Terms and Support pages are public at `app.kitamo.online/privacy`, `/terms` and `/support`. | approved | Available Today | `seller-web` | `../seller-web/app/(legal)/privacy/page.tsx`; `terms/page.tsx`; `support/page.tsx`; HTTP 200 on 2026-09-26 | Approved: MR-1, all four routes; owner (Product Authority), 2026-09-26 | Links only: footer on every route, and the About help link. This site publishes no legal text of its own. |
 | CLM-026 | Product pictures show the KitaMo web app's screens with sample data; scene photos are AI-generated illustrations. | approved | Available Today | this repository | `docs/redesign/generation-kit/README.md`; ADR-0012 | Approved: MR-1, all four routes; owner (Product Authority), 2026-09-26 | Every picture is captioned "Screens show the KitaMo web app with sample data." and photos add "Illustration.". No real brand may appear in an image. People in photos are not customers and must never be presented as such. |
+| CLM-027 | A barangay, LGU or HOA level is Planned: sellers who use the association's code can show its officers when their stall is open and, if they choose, how busy it is; each seller chooses what to share, and no sales amounts are shown. A barangay, LGU or HOA can ask for it by email. | evidence found | Planned | `seller-web` | R16 HOA built with its switch OFF: `../seller-web/supabase/migrations/0086_association.sql:137` (`association` switch added with `enabled` false, "0086: built, not enabled") and `../seller-web/supabase/migrations/0087_association_busy.sql`, branch `extra/r16-sr-hoa` at `d1fe60b`; design `../seller-web/docs/design/D18-ASSOCIATION-WATCH.md` §0, §1, §3 at `5ee89f6`; the owner's D18 answers of 2026-10-14; request address `../seller-web/lib/content/legal.ts:2` on `main` at `2bf298e` | Pending owner approval | Not available: the switch stays OFF until the lawyer's OK, so the block shows the visible `Planned` label and promises no date. Surface: one block on `/about` only, in English and Filipino (exact wording in `../content/mr-1-marketing-content-contract.md`). The action is a plain `mailto:` with a prefilled subject; no form, tracking or analytics. See the CLM-027 pending-approval record. |
 
 CLM-010 is the only `Available Today` entry. It covers only the reachability of
 the separate web app through the `Sign in` link and does not change the status
-of the Android testing candidate. There are no `Planned` entries in this
-register. Approved Android entries remain **Currently Testing**. The WEB-4
+of the Android testing candidate. CLM-027 is the only `Planned` entry, and it is
+not approved. Approved Android entries remain **Currently Testing**. The WEB-4
 About contract authorizes one deliberately broad `Future Vision` direction
 without asserting
 a factual future capability or delivery timing. Future-roadmap evidence must
@@ -206,6 +209,46 @@ not be added as a public claim until its status and wording are reviewed.
   - a change to sign-up, the login route or origin, the Terms' free-during-
     testing clause, or the legal pages;
   - a new image, language or route.
+
+## CLM-027 pending-approval record (barangay, LGU or HOA)
+
+- **Context.** On 2026-10-14 the owner answered D18's six questions (via the
+  lead). Associations are set up by KitaMo by hand, an association's kind is
+  HOA or Barangay/LGU, and this website gets an "Are you a barangay, LGU or
+  HOA?" entry that leads to an email or chat request, with no form. The lead
+  approved the approach the same day. **The owner approves the final wording
+  before any deploy.** Until then this entry stays `evidence found`.
+- **Evidence.** R16 HOA (`0086_association`, open and close;
+  `0087_association_busy`, the busy level) is built on `../seller-web` branch
+  `extra/r16-sr-hoa` with its `association` switch OFF. Sellers enter the
+  association's code, pick which stall, the name to show and the "where" line,
+  and tick the busy box only if they want to (unticked by default). Officers
+  see open or closed, since when, the hours, and Quiet / Busy / Very busy; they
+  never see a number, an amount, a product, a customer or any record (D18 §1).
+- **Surface and wording.** One block on `/about`, after "Where it stands",
+  with the visible `Planned` label:
+  - EN: "Are you a barangay, LGU or HOA?" and "Sellers who use your code can
+    show when their stall is open and, if they choose, how busy it is. They
+    choose what to share, and no sales amounts are shown."
+  - FIL: "Barangay, LGU o HOA ba kayo?" and "Puwedeng ipakita ng mga
+    nagtitindang gumagamit ng code ninyo kung bukas ang puwesto nila at, kung
+    gusto nila, kung gaano ito kaabala. Sila ang pumipili kung ano ang
+    ibabahagi, at walang ipinapakitang halaga ng benta."
+- **Action.** "Request it" and "Humiling", each a `mailto:` to
+  kitamo.online@gmail.com with a prefilled subject ("KitaMo for our barangay,
+  LGU or HOA" / "KitaMo para sa aming barangay, LGU o HOA"). The address is the
+  web app's published support address (`SUPPORT_EMAIL`), so this adds no new
+  contact identity. The visitor's own mail app sends the message; the site
+  stores, counts and tracks nothing (ADR-0007, ADR-0013). No chat link: the
+  owner has not given one.
+- **Exclusions.** No date, launch window, price or availability statement; no
+  claim that any barangay, LGU or HOA uses KitaMo or endorses it; no map, no
+  numbers shown to officers; no form. This does not approve a general public
+  support contact (see Known claim gaps) or any other wording about the level.
+- **Revalidation trigger.** The switch is turned on (the block must then be
+  re-reviewed before any status change), the shown or never-shown list changes,
+  the request address changes, a chat link is added, or the wording is reused
+  on another surface.
 
 ## Known claim gaps
 
