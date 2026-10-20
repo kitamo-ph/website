@@ -41,12 +41,12 @@ export const howItWorksCopy = {
   ],
   limits: {
     heading: "What KitaMo doesn't do.",
-    // CLM-023, CLM-016 negative, CLM-022, CLM-024.
+    // CLM-023, CLM-016 negative, CLM-022. (CLM-024 retired 2026-10-20: staff
+    // sign-in and stalls are live in the web app.)
     items: [
       "It needs internet.",
       "It records payments but doesn't move money.",
       "The receipt is not an official BIR receipt.",
-      "There are no staff logins or multiple stalls yet.",
     ],
   },
 } as const;

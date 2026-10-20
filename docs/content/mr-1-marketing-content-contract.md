@@ -70,10 +70,11 @@ The page ends with "What KitaMo doesn't do":
 
 - it needs internet;
 - it records payments but doesn't move money;
-- the receipt is not an official BIR receipt;
-- there are no staff logins or multiple stalls yet.
+- the receipt is not an official BIR receipt.
 
-Claims: CLM-013 to 020, 022 to 024, 026.
+Claims: CLM-013 to 020, 022, 023, 026. (Hotfix 2026-10-20: "there are no staff
+logins or multiple stalls yet" removed and CLM-024 retired, because staff
+sign-in and stalls are live in the web app. Removal only; no claim added.)
 
 ## `/for-sellers`
 

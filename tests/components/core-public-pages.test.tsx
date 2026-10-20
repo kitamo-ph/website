@@ -109,6 +109,8 @@ describe("MR-1 How it works", () => {
     for (const limit of howItWorksCopy.limits.items) {
       expect(markup).toContain(limit.replaceAll("'", "&#x27;"));
     }
+    // CLM-024 retired (2026-10-20): staff sign-in and stalls are live.
+    expect(markup).not.toContain("staff logins");
   });
 });
 
