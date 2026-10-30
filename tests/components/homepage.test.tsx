@@ -50,6 +50,14 @@ describe("MR-1 homepage", () => {
     expect(markup.toLowerCase().match(/offline/g)).toHaveLength(1);
   });
 
+  it("says AI only in the FAQ that discloses Lis", () => {
+    const markup = renderHomepage();
+
+    // The question and its last sentence; nowhere else on the page.
+    expect(markup.match(/\bAI\b/g)).toHaveLength(2);
+    expect(markup).toContain("Only in Lis, the optional assistant.");
+  });
+
   it("answers the limits next to the claims", () => {
     const markup = renderHomepage();
 

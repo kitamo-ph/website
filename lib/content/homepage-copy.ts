@@ -167,9 +167,15 @@ export const homepageCopy = {
           "Use Enter your lista to bring in what each customer already owes. Sales from a notebook can go in too, marked “Logged later”.",
       },
       {
+        // The one place "AI" appears: a disclosure for Lis (the lead, Oct 30).
+        question: "Does KitaMo use AI?",
+        answer:
+          "Only in Lis, the optional assistant. She is off until you say yes and sign, and for now only invited businesses can use her. The KitaMo app, Operations, Insights and Marketing work without AI.",
+      },
+      {
         question: "Who can see my records?",
         answer:
-          "You. Your staff see only what they need to sell. A helper sees only what you allow when you turn it on. KitaMo looks only with a written reason. Records are kept in a database in Singapore. The Privacy Policy lists every detail.",
+          "You. Your staff see only what they need to sell. A helper sees only what you allow when you turn it on, and Lis only if you say yes. KitaMo looks only with a written reason. Records are kept in a database in Singapore. The Privacy Policy lists every detail.",
       },
       {
         question: "Can I leave?",
