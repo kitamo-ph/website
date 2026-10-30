@@ -121,8 +121,7 @@ describe("MR-1 For sellers", () => {
     for (const seller of forSellersCopy.sellers) {
       expect(markup).toContain(seller.name.toLowerCase());
     }
-    // Recipe costing is only in the Android pilot, not the web app.
-    expect(markup).not.toContain("recipe");
+    // Recipes and the costing sheet are in the web app since seller-web a0446f2.
     expect(markup).not.toContain("trusted by");
     expect(markup).not.toContain("active customers");
   });
