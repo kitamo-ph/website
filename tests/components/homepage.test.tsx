@@ -54,8 +54,9 @@ describe("MR-1 homepage", () => {
     const markup = renderHomepage();
 
     expect(markup).toContain("<details");
-    expect(markup).toContain("Yes, the web app needs a connection.");
-    expect(markup).toContain("It records how you were paid.");
+    expect(markup).toContain("No, it needs a connection.");
+    expect(markup).toContain("It records how you were paid:");
+    expect(markup).toContain("Card payments aren&#x27;t in KitaMo.");
     expect(markup).toContain("not a BIR receipt");
     expect(markup).toContain("Free while in testing.");
   });
